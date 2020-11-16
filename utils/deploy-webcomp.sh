@@ -24,7 +24,7 @@ mkdir -p "tmp/$WC_NAME/$WC_TAG/dist"
 
 cd tmp
 wget --no-verbose "$GIT_BASEURL/odh-web-components-store-origins/development/origins.json"
-UUID=$(jq -r '.[] | select(.url | test(".*$WC_NAME.*")) | .uuid' origins.json)
+UUID=$(jq -r '.[] | select(.url | test(".*'"$WC_NAME"'.*")) | .uuid' origins.json)
 
 cd "$WC_NAME/$WC_TAG"
 wget --no-verbose "$GIT_BASEURL/$WC_NAME/$WC_TAG/wcs-manifest.json" 
@@ -109,7 +109,7 @@ PGPASSWORD="$DB_PASS" $PSQL <<SQL
             image = excluded.image, 
             repository_url = excluded.repository_url, 
             deleted = excluded.deleted, 
-            copyright_holde = excluded.copyright_holders
+            copyright_holders = excluded.copyright_holders
 
 SQL
 
