@@ -49,8 +49,9 @@ PGPASSWORD="$DB_PASS" $PSQL <<SQL
         '$GITHUBURL/$WC_NAME.git',
         'github',
         false
-    ) on conflict (uuid) do 
+    ) on conflict (uuid, url) do 
         update set 
+            uuid = excluded.uuid,
             url = excluded.url, 
             api = excluded.api, 
             deleted = excluded.deleted;
