@@ -41,7 +41,7 @@ jq -r '.dist.files[]' ../wcs-manifest.json \
 # Update the database records
 #
 
-$PSQL <<SQL
+PGPASSWORD="$DB_PASS" $PSQL <<SQL
 
     insert into origin (uuid, url, api, deleted) 
     values (
@@ -72,7 +72,7 @@ MF_AUTHORS=${MF_AUTHORS//\'/\'\'}
 MF_COPYRIGHTHOLDERS=$(jq -r '.copyrightHolders' ../wcs-manifest.json)
 MF_COPYRIGHTHOLDERS=${MF_COPYRIGHTHOLDERS//\'/\'\'}
 
-$PSQL <<SQL
+PGPASSWORD="$DB_PASS" $PSQL <<SQL
 
     insert into webcomponent (
         uuid, 
@@ -120,7 +120,7 @@ MF_DIST=$(jq -r '.dist' ../wcs-manifest.json)
 MF_DIST=${MF_DIST//\'/\'\'}
 
 
-$PSQL <<SQL
+PGPASSWORD="$DB_PASS" $PSQL <<SQL
 
     insert into webcomponent_version (
         webcomponent_uuid, 

@@ -18,13 +18,13 @@ pipeline {
     parameters {
         string(
             name: 'WC_NAME', 
-            defaultValue: 'webcomp-example', 
+            defaultValue: 'webcomp-mobility-traffic', 
             description: 'Web component git repository name',
             trim: true
         )
         string(
             name: 'WC_TAG', 
-            defaultValue: '1.0.0', 
+            defaultValue: 'v0.2.1', 
             description: 'Web component git tag',
             trim: true
         )
