@@ -45,11 +45,11 @@ PGPASSWORD="$DB_PASS" $PSQL <<SQL
 
     insert into origin (uuid, url, api, deleted) 
     values (
-        'TEST-$UUID',
+        '$UUID',
         '$GITHUBURL/$WC_NAME.git',
         'github',
         false
-    ) on conflict (uuid, url) do 
+    ) on conflict (url) do
         update set 
             uuid = excluded.uuid,
             url = excluded.url, 
@@ -88,7 +88,7 @@ PGPASSWORD="$DB_PASS" $PSQL <<SQL
         deleted, 
         copyright_holders
     ) values (
-        'TEST-$UUID',
+        '$UUID',
         '$MF_TITLE',
         '$MF_DESCRIPTION',
         '$MF_DESCRIPTION_ABSTRACT',
@@ -131,7 +131,7 @@ PGPASSWORD="$DB_PASS" $PSQL <<SQL
         dist, 
         deleted 
     ) values (
-        'TEST-$UUID',
+        '$UUID',
         '$WC_TAG',
         '$(date -Iseconds)',
         '$MF_CONFIGURATION',
