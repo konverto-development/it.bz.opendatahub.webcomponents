@@ -13,7 +13,7 @@ pipeline {
     environment {
         DB_USER = credentials('webcompstore-test-postgres-username')
         DB_PASS = credentials('webcompstore-test-postgres-password')
-        SSH_CDN_ADDR = "34.253.82.250"
+        SSH_CDN_ADDR = "172.31.37.40"
         SSH_CDN_USER = "admin"
     }
 
