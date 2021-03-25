@@ -31,17 +31,6 @@ pipeline {
 					echo 'GITHUB_ORIGINS_REPO=$GITHUB_ORIGINS_REPO' >> .env
 					echo 'GITHUB_ORIGINS_BRANCH=$GITHUB_ORIGINS_BRANCH' >> .env
 					echo 'GITHUB_ORIGINS_FILE=$GITHUB_ORIGINS_FILE' >> .env
-
-                    mkdir -p ~/.ssh
-                    ssh-keyscan -H $SSH_CDN_ADDR >> ~/.ssh/known_hosts
-					ssh-keyscan -H github.com >> ~/.ssh/known_hosts
-                    echo 'Host tomcattest2' >> ~/.ssh/config
-                    echo '  User $SSH_CDN_USER' >> ~/.ssh/config
-                    echo '  Hostname $SSH_CDN_ADDR' >> ~/.ssh/config
-
-					git config --global user.email "info@opendatahub.bz.it"
-					git config --global user.name "Jenkins"
-					git remote set-url origin $GIT_URL
                 """
             }
         }

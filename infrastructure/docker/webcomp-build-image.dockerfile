@@ -20,6 +20,17 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /work
+                    
+RUN mkdir -p .ssh  \
+    && ssh-keyscan -H $SSH_CDN_ADDR >> .ssh/known_hosts \
+    && ssh-keyscan -H github.com >> .ssh/known_hosts \
+    && echo 'Host tomcattest2' >> .ssh/config \
+    && echo '  User $SSH_CDN_USER' >> .ssh/config \
+    && echo '  Hostname $SSH_CDN_ADDR' >> .ssh/config 
+
+RUN git config --global user.email "info@opendatahub.bz.it" \
+    && git config --global user.name "Jenkins" \
+	&& git remote set-url origin $GIT_URL
 
 COPY infrastructure/utils/wcstorecli.sh /work/wcstorecli.sh
 COPY .env /work/.env
