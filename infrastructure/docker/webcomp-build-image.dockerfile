@@ -4,7 +4,7 @@ ARG JENKINS_GROUP_ID=2000
 ARG JENKINS_USER_ID=2000
 
 RUN groupadd --gid $JENKINS_GROUP_ID jenkins && \
-    useradd --uid $JENKINS_USER_ID --gid $JENKINS_GROUP_ID --create-home jenkins
+    useradd --uid $JENKINS_USER_ID --gid $JENKINS_GROUP_ID --create-home /home/jenkins
 
 RUN apt-get update \
     && apt-get -y upgrade \
