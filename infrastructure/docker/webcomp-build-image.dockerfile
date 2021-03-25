@@ -20,6 +20,10 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /work
+COPY infrastructure/utils/wcstorecli.sh /work/wcstorecli.sh
+COPY .env /work/.env
+
+RUN source /work/.env
                     
 RUN mkdir -p /work/.ssh  \
     && ssh-keyscan -H $SSH_CDN_ADDR >> /work/.ssh/known_hosts 
@@ -32,5 +36,3 @@ RUN mkdir -p /work/.ssh  \
 #     && git config --global user.name "Jenkins" \
 # 	&& git remote set-url origin $GIT_URL
 
-COPY infrastructure/utils/wcstorecli.sh /work/wcstorecli.sh
-COPY .env /work/.env
