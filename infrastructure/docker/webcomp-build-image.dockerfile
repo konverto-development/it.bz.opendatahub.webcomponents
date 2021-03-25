@@ -22,15 +22,15 @@ RUN apt-get update \
 WORKDIR /work
                     
 RUN mkdir -p /work/.ssh  \
-    && ssh-keyscan -H $SSH_CDN_ADDR >> /work/.ssh/known_hosts \
-    && ssh-keyscan -H github.com >> /work/.ssh/known_hosts \
-    && echo 'Host tomcattest2' >> /work/.ssh/config \
-    && echo '  User $SSH_CDN_USER' >> /work/.ssh/config \
-    && echo '  Hostname $SSH_CDN_ADDR' >> /work/.ssh/config 
+    && ssh-keyscan -H $SSH_CDN_ADDR >> /work/.ssh/known_hosts 
+#     && ssh-keyscan -H github.com >> /work/.ssh/known_hosts \
+#     && echo 'Host tomcattest2' >> /work/.ssh/config \
+#     && echo '  User $SSH_CDN_USER' >> /work/.ssh/config \
+#     && echo '  Hostname $SSH_CDN_ADDR' >> /work/.ssh/config 
 
-RUN git config --global user.email "info@opendatahub.bz.it" \
-    && git config --global user.name "Jenkins" \
-	&& git remote set-url origin $GIT_URL
+# RUN git config --global user.email "info@opendatahub.bz.it" \
+#     && git config --global user.name "Jenkins" \
+# 	&& git remote set-url origin $GIT_URL
 
 COPY infrastructure/utils/wcstorecli.sh /work/wcstorecli.sh
 COPY .env /work/.env
