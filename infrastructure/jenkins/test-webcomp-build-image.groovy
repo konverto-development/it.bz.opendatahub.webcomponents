@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_PROJECT_NAME = "webcompbuild"
         DOCKER_IMAGE = '755952719952.dkr.ecr.eu-west-1.amazonaws.com/webcompbuild'
-        DOCKER_TAG = "test-$BUILD_NUMBER"
+        DOCKER_TAG = "latest"
 
 		DB_HOST = "test-pg-bdp.co90ybcr8iim.eu-west-1.rds.amazonaws.com"
 		DB_PORT = "5432"
