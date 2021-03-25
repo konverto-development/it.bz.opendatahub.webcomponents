@@ -34,7 +34,7 @@ RUN . /work/.env \
     && echo '  User $SSH_CDN_USER' >> /work/.ssh/config \
     && echo '  Hostname $SSH_CDN_ADDR' >> /work/.ssh/config 
 
-RUN git config --global user.email "info@opendatahub.bz.it" \
-    && git config --global user.name "Jenkins" \
- 	&& git remote set-url origin $GIT_URL
+# RUN git config --global user.email "info@opendatahub.bz.it" \
+#     && git config --global user.name "Jenkins" \
+#  	&& git remote set-url origin $GIT_URL
 
