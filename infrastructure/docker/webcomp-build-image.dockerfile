@@ -21,8 +21,10 @@ RUN apt-get update \
 
 WORKDIR /work
 COPY infrastructure/utils/wcstorecli.sh /work/wcstorecli.sh
+COPY .env /work/.env
 
-RUN mkdir -p /work/.ssh  \
+RUN . /work/.env \
+    && mkdir -p /work/.ssh  \
     && ssh-keyscan -H 172.31.37.40 >> /work/.ssh/known_hosts \
     && ssh-keyscan -H github.com >> /work/.ssh/known_hosts \
     && echo 'Host tomcattest2' >> /work/.ssh/config \
