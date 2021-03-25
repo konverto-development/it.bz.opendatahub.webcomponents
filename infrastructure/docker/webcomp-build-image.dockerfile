@@ -24,12 +24,12 @@ COPY infrastructure/utils/wcstorecli.sh /work/wcstorecli.sh
 COPY .env /work/.env
 
 RUN . /work/.env \
-    && mkdir -p /work/.ssh  \
-    && ssh-keyscan -H 172.31.37.40 >> /work/.ssh/known_hosts \
-    && ssh-keyscan -H github.com >> /work/.ssh/known_hosts \
-    && echo 'Host tomcattest2' >> /work/.ssh/config \
-    && echo '  User admin' >> /work/.ssh/config \
-    && echo '  Hostname 172.31.37.40' >> /work/.ssh/config 
+    && mkdir -p ~/.ssh  \
+    && ssh-keyscan -H 172.31.37.40 >> ~/.ssh/known_hosts \
+    && ssh-keyscan -H github.com >> ~/.ssh/known_hosts \
+    && echo 'Host tomcattest2' >> ~/.ssh/config \
+    && echo '  User admin' >> ~/.ssh/config \
+    && echo '  Hostname 172.31.37.40' >> ~/.ssh/config 
 
 # RUN git config --global user.email "info@opendatahub.bz.it" \
 #     && git config --global user.name "Jenkins" \
