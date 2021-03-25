@@ -21,13 +21,10 @@ pipeline {
     stages {
         stage('Configure') {
             steps {
-                sh '''
+                sh """
 					rm -rf .env
 					echo 'DB_USER=$DB_USER' >> .env
 					echo 'DB_PASS=$DB_PASS' >> .env
-				'''
-
-                sh """
 					echo 'DB_HOST=$DB_HOST' >> .env
 					echo 'DB_PORT=$DB_PORT' >> .env
 					echo 'GITHUB_ORGANIZATION=$GITHUB_ORGANIZATION' >> .env

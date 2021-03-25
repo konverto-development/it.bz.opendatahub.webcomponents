@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+set -xeuo pipefail
 SCRIPTNAME=${0##*/}
 
 GIT_BASEURL="https://github.com"
