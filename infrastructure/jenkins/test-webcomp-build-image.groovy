@@ -21,8 +21,19 @@ pipeline {
     stages {
         stage('Configure') {
             steps {
+                sh '''
+					rm -rf .env
+					echo 'DB_USER=$DB_USER' >> .env
+					echo 'DB_PASS=$DB_PASS' >> .env
+				'''
+
                 sh """
-                    env | sort > .env
+					echo 'DB_HOST=$DB_HOST' >> .env
+					echo 'DB_PORT=$DB_PORT' >> .env
+					echo 'GITHUB_ORGANIZATION=$GITHUB_ORGANIZATION' >> .env
+					echo 'GITHUB_ORIGINS_REPO=$GITHUB_ORIGINS_REPO' >> .env
+					echo 'GITHUB_ORIGINS_BRANCH=$GITHUB_ORIGINS_BRANCH' >> .env
+					echo 'GITHUB_ORIGINS_FILE=$GITHUB_ORIGINS_FILE' >> .env
 
                     mkdir -p ~/.ssh
                     ssh-keyscan -H $SSH_CDN_ADDR >> ~/.ssh/known_hosts
