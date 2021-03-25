@@ -18,3 +18,8 @@ RUN apt-get update \
         openssh-client \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /work
+
+COPY ../utils/wcstorecli.sh /work/wcstorecli.sh
+COPY ../../.env /work/.env

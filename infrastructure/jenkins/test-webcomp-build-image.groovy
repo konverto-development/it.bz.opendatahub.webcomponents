@@ -5,16 +5,24 @@ pipeline {
         DOCKER_PROJECT_NAME = "webcompbuild"
         DOCKER_IMAGE = '755952719952.dkr.ecr.eu-west-1.amazonaws.com/webcompbuild'
         DOCKER_TAG = "test-$BUILD_NUMBER"
+
+		DB_HOST = "test-pg-bdp.co90ybcr8iim.eu-west-1.rds.amazonaws.com"
+		DB_PORT = "5432"
+        DB_USER = credentials('webcompstore-test-postgres-username')
+        DB_PASS = credentials('webcompstore-test-postgres-password')
+        SSH_CDN_ADDR = "172.31.37.40"
+        SSH_CDN_USER = "admin"
+		GITHUB_ORGANIZATION = "noi-techpark"
+		GITHUB_ORIGINS_REPO = "odh-web-components-store-origins"
+		GITHUB_ORIGINS_BRANCH = "development"
+		GITHUB_ORIGINS_FILE = "origins.json"
     }
 
     stages {
         stage('Configure') {
             steps {
                 sh """
-                    rm -f .env
-                    echo 'COMPOSE_PROJECT_NAME=${DOCKER_PROJECT_NAME}' >> .env
-                    echo 'DOCKER_IMAGE=${DOCKER_IMAGE}' >> .env
-                    echo 'DOCKER_TAG=${DOCKER_TAG}' >> .env
+                    env | sort > .env
                 """
             }
         }
