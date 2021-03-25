@@ -21,5 +21,5 @@ RUN apt-get update \
 
 WORKDIR /work
 
-COPY ../utils/wcstorecli.sh /work/wcstorecli.sh
-COPY ../../.env /work/.env
+COPY infrastructure/utils/wcstorecli.sh /work/wcstorecli.sh
+COPY .env /work/.env
