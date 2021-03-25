@@ -27,6 +27,8 @@ pipeline {
 					echo 'DB_PASS=$DB_PASS' >> .env
 					echo 'DB_HOST=$DB_HOST' >> .env
 					echo 'DB_PORT=$DB_PORT' >> .env
+					echo 'SSH_CDN_ADDR=$SSH_CDN_ADDR' >> .env
+					echo 'SSH_CDN_USER=$SSH_CDN_USER' >> .env
 					echo 'GITHUB_ORGANIZATION=$GITHUB_ORGANIZATION' >> .env
 					echo 'GITHUB_ORIGINS_REPO=$GITHUB_ORIGINS_REPO' >> .env
 					echo 'GITHUB_ORIGINS_BRANCH=$GITHUB_ORIGINS_BRANCH' >> .env

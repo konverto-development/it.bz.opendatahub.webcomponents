@@ -26,7 +26,7 @@ COPY .env /work/.env
 RUN . /work/.env
                     
 RUN mkdir -p /work/.ssh  \
-    && ssh-keyscan -H $SSH_CDN_ADDR >> /work/.ssh/known_hosts 
+    && ssh-keyscan -H  >> /work/.ssh/known_hosts 
 #     && ssh-keyscan -H github.com >> /work/.ssh/known_hosts \
 #     && echo 'Host tomcattest2' >> /work/.ssh/config \
 #     && echo '  User $SSH_CDN_USER' >> /work/.ssh/config \
