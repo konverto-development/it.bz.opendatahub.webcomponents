@@ -317,4 +317,4 @@ done
 
 # Show help, if now arguments given...
 showHelp
-showError "No arguments given"
+outError "No arguments given"
