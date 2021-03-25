@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_PROJECT_NAME = "webcompbuild"
-        DOCKER_IMAGE = 'public.ecr.aws/c4u4j3v4/webcompbuild'
+        DOCKER_IMAGE = '755952719952.dkr.ecr.eu-west-1.amazonaws.com/webcompbuild'
         DOCKER_TAG = "test-$BUILD_NUMBER"
     }
 
