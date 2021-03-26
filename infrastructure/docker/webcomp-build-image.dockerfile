@@ -19,12 +19,11 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+USER jenkins
+WORKDIR /webcompbuild
 
 COPY infrastructure/utils/wcstorecli.sh .
 COPY .env .
-
-USER jenkins
-WORKDIR /webcompbuild
 
 RUN rm -rf ~/.ssh \
     && mkdir -p ~/.ssh  \
@@ -35,7 +34,6 @@ RUN rm -rf ~/.ssh \
     && echo '  Hostname 172.31.37.40' >> ~/.ssh/config \
     && ls -la ~/.ssh/config
 
-# RUN git config --global user.email "info@opendatahub.bz.it" \
-#     && git config --global user.name "Jenkins" \
-#  	&& git remote set-url origin $GIT_URL
+RUN git config --global user.email "info@opendatahub.bz.it" \
+    && git config --global user.name "Jenkins" 
 
