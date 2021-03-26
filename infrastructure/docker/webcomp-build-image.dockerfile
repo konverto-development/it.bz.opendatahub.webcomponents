@@ -22,8 +22,8 @@ RUN apt-get update \
 USER jenkins
 WORKDIR /webcompbuild
 
-COPY infrastructure/utils/wcstorecli.sh .
-COPY .env .
+COPY infrastructure/utils/wcstorecli.sh /webcompbuild/wcstorecli.sh
+COPY .env /webcompbuild/.env
 
 RUN rm -rf ~/.ssh \
     && mkdir -p ~/.ssh  \
