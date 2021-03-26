@@ -133,7 +133,7 @@ while true; do
             # Test SSH connection before doing anything
             #
             outInfo "# Testing SSH connection"
-            ssh tomcattest2 "date" > /dev/null || {
+            ssh testcdnhost "date" > /dev/null || {
                 outError "Could not establish SSH connection. Exiting..."
             }
             outInfo "> SUCCESS"
@@ -287,16 +287,16 @@ SQL
             # Upload to the CDN
             #
             outInfo "# Upload dist files to the CDN"
-            ssh tomcattest2 "mkdir -p /home/admin/var/data/webcomponents-store/$UUID/$WC_TAG/dist"
-            scp -r "$PATH_LOCAL_WC/$MF_DIST_PATH/"* "tomcattest2:/home/admin/var/data/webcomponents-store/$UUID/$WC_TAG/dist"
-            scp "$PATH_WCS_MANIFEST_JSON" "tomcattest2:/home/admin/var/data/webcomponents-store/$UUID/$WC_TAG"
+            ssh testcdnhost "mkdir -p /home/admin/var/data/webcomponents-store/$UUID/$WC_TAG/dist"
+            scp -r "$PATH_LOCAL_WC/$MF_DIST_PATH/"* "testcdnhost:/home/admin/var/data/webcomponents-store/$UUID/$WC_TAG/dist"
+            scp "$PATH_WCS_MANIFEST_JSON" "testcdnhost:/home/admin/var/data/webcomponents-store/$UUID/$WC_TAG"
 			if [ -n "$MF_WCS_IMAGE" ]; then
-            	scp "$PATH_LOCAL_WC/$MF_WCS_IMAGE" "tomcattest2:/home/admin/var/data/webcomponents-store/$UUID/$WC_TAG"
+            	scp "$PATH_LOCAL_WC/$MF_WCS_IMAGE" "testcdnhost:/home/admin/var/data/webcomponents-store/$UUID/$WC_TAG"
 			fi
             outInfo "> SUCCESS"
 
             outInfo "# Set permissions and paths of the uploaded dist files inside the CDN server"
-            ssh tomcattest2 bash -c "'
+            ssh testcdnhost bash -c "'
                 set -xeuo pipefail
                 sudo rm -rf /var/data/webcomponents-store/$UUID/$WC_TAG
                 sudo mkdir -p /var/data/webcomponents-store/$UUID/$WC_TAG
