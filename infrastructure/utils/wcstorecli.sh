@@ -288,7 +288,7 @@ SQL
             #
             outInfo "# Upload dist files to the CDN"
             ssh tomcattest2 "mkdir -p /home/admin/var/data/webcomponents-store/$UUID/$WC_TAG/dist"
-            scp -r "$PATH_LOCAL_WC/dist/"* "tomcattest2:/home/admin/var/data/webcomponents-store/$UUID/$WC_TAG/dist"
+            scp -r "$PATH_LOCAL_WC/$MF_DIST_PATH/"* "tomcattest2:/home/admin/var/data/webcomponents-store/$UUID/$WC_TAG/dist"
             scp "$PATH_WCS_MANIFEST_JSON" "tomcattest2:/home/admin/var/data/webcomponents-store/$UUID/$WC_TAG"
 			if [ -n "$MF_WCS_IMAGE" ]; then
             	scp "$PATH_LOCAL_WC/$MF_WCS_IMAGE" "tomcattest2:/home/admin/var/data/webcomponents-store/$UUID/$WC_TAG"
