@@ -27,12 +27,11 @@ COPY .env /webcompbuild/.env
 
 RUN rm -rf ~/.ssh \
     && mkdir -p ~/.ssh  \
-    && ssh-keyscan -H 172.31.37.40 >> ~/.ssh/known_hosts \
+    && ssh-keyscan -H $SSH_CDN_ADDR >> ~/.ssh/known_hosts \
     && ssh-keyscan -H github.com >> ~/.ssh/known_hosts \
-    && echo 'Host tomcattest2' >> ~/.ssh/config \
-    && echo '  User admin' >> ~/.ssh/config \
-    && echo '  Hostname 172.31.37.40' >> ~/.ssh/config \
-    && ls -la ~/.ssh/config
+    && echo "Host testcdnhost" >> ~/.ssh/config \
+    && echo "  User $SSH_CDN_USER" >> ~/.ssh/config \
+    && echo "  Hostname $SSH_CDN_ADDR" >> ~/.ssh/config 
 
 RUN git config --global user.email "info@opendatahub.bz.it" \
     && git config --global user.name "Jenkins" 
