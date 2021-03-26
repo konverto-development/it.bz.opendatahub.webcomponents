@@ -19,17 +19,19 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /work
-COPY infrastructure/utils/wcstorecli.sh /work/wcstorecli.sh
-COPY .env /work/.env
+WORKDIR /webcompbuild
 
-RUN . /work/.env \
+COPY infrastructure/utils/wcstorecli.sh .
+COPY .env .
+
+RUN rm -rf ~/.ssh \
     && mkdir -p ~/.ssh  \
     && ssh-keyscan -H 172.31.37.40 >> ~/.ssh/known_hosts \
     && ssh-keyscan -H github.com >> ~/.ssh/known_hosts \
     && echo 'Host tomcattest2' >> ~/.ssh/config \
     && echo '  User admin' >> ~/.ssh/config \
-    && echo '  Hostname 172.31.37.40' >> ~/.ssh/config 
+    && echo '  Hostname 172.31.37.40' >> ~/.ssh/config \
+    && ls -la ~/.ssh/config
 
 # RUN git config --global user.email "info@opendatahub.bz.it" \
 #     && git config --global user.name "Jenkins" \
