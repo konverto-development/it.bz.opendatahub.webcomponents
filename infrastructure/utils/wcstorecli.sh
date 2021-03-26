@@ -155,7 +155,7 @@ while true; do
 			#
             outInfo "# Get wcs-manifest.json and parse it"
             PATH_WCS_MANIFEST_JSON="$PATH_LOCAL_WC/wcs-manifest.json"
-            wget --no-verbose "$_GITHUBRAW/$WC_NAME/$WC_TAG/wcs-manifest.json" -O "$PATH_WCS_MANIFEST_JSON"
+            #wget --no-verbose "$_GITHUBRAW/$WC_NAME/$WC_TAG/wcs-manifest.json" -O "$PATH_WCS_MANIFEST_JSON"
             MF_WCS_IMAGE=$(jsonGetPermissive "$PATH_WCS_MANIFEST_JSON" '.image')
             MF_DIST_PATH=$(jsonGet "$PATH_WCS_MANIFEST_JSON" '.dist.basePath')
             MF_TITLE=$(jsonGet "$PATH_WCS_MANIFEST_JSON" '.title')
@@ -174,15 +174,15 @@ while true; do
 				outInfo ">> No image path defined... skipping."
 				MF_WCS_IMAGE_SQL="null"
 			else
-            	wget --no-verbose "$_GITHUBRAW/$WC_NAME/$WC_TAG/$MF_WCS_IMAGE" -O "$PATH_LOCAL_WC/$MF_WCS_IMAGE"
+            	#wget --no-verbose "$_GITHUBRAW/$WC_NAME/$WC_TAG/$MF_WCS_IMAGE" -O "$PATH_LOCAL_WC/$MF_WCS_IMAGE"
 				MF_WCS_IMAGE_SQL="'$MF_WCS_IMAGE'"
 			fi
             outInfo "> SUCCESS"
 
-            outInfo "# Get all dist files"
-            jq -r '.dist.files[]' "$PATH_WCS_MANIFEST_JSON" \
-                | xargs -I '{}' wget --no-verbose "$_GITHUBRAW/$WC_NAME/$WC_TAG/$MF_DIST_PATH/{}" -O "$PATH_LOCAL_WC/dist/{}"
-            outInfo "> SUCCESS"
+            #outInfo "# Get all dist files"
+            #jq -r '.dist.files[]' "$PATH_WCS_MANIFEST_JSON" \
+            #    | xargs -I '{}' wget --no-verbose "$_GITHUBRAW/$WC_NAME/$WC_TAG/$MF_DIST_PATH/{}" -O "$PATH_LOCAL_WC/dist/{}"
+            #outInfo "> SUCCESS"
 
 			#
             # Get origins.json and parse UUID, create it if absent
