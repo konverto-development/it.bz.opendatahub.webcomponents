@@ -147,8 +147,9 @@ while true; do
             # Prepare local temporary folders and files, download the manifest file and parse information
             #
             PATH_LOCAL_WC="tmp/${WC_NAME:?}/${WC_TAG:?}"
-            rm -rf "$PATH_LOCAL_WC"*
-            mkdir -p "$PATH_LOCAL_WC/dist"
+			PATH_LOCAL_WC=$(pwd)
+            #rm -rf "$PATH_LOCAL_WC"*
+            #mkdir -p "$PATH_LOCAL_WC/dist"
 
 			#
 			# Get manifest file and parse metadata
