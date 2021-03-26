@@ -19,10 +19,12 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /webcompbuild
 
 COPY infrastructure/utils/wcstorecli.sh .
 COPY .env .
+
+USER jenkins
+WORKDIR /webcompbuild
 
 RUN rm -rf ~/.ssh \
     && mkdir -p ~/.ssh  \
